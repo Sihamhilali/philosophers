@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:30:39 by selhilal          #+#    #+#             */
-/*   Updated: 2023/05/19 18:13:21 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/05/21 16:24:41 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,37 @@
 # include<stdlib.h>
 # include<pthread.h>
 
-char	*ft_strjoin(char *s1, char *s2);
-char	**ft_split(char const *s, char c);
+
+typedef struct s_list
+{
+	int				max_eat;
+	int				number_philo;
+	int				time_eat;
+	int				time_sleep;
+	int				time_die;
+}				t_list;
+
+typedef struct s_philo
+{
+	int				p_id;
+	pthread_mutex_t	fork;
+	pthread_t		threads;
+	t_list			*list;
+	struct s_philo	*next;
+	struct s_philo	*prev;
+
+}				t_philo;
+
 int		ft_strlen(const char *s);
 long	ft_atoi(char const *str);
 void	empty(char **str);
 void	max_min(char **split);
 void	is_numbre(char **split);
 void	isital(t_list *thread);
-//void	creat_philosoper(t_list *thread);
 
-//typedef struct s_list
-//{
-//	char		**table;
-//	int			number_philo;
-//	int			time_eat;
-//	int			time_sleep;
-//	int			time_die;
-//	pthread_t	threads;
-//}				t_list;
 
-typedef struct s_linked
-{
-	int				content;
-	int				index;
-	struct s_linked	*next;
-}					t_linked;
+void	creat_philosoper(t_list *thread);
+t_list	*ft_lstnew(int philo, int die, int eat, int sleep);
+void	ft_lstadd_back(t_philo	**lst, t_list	*new);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:07:19 by selhilal          #+#    #+#             */
-/*   Updated: 2023/05/19 15:46:05 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/05/21 14:18:31 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	empty(char **str)
 		}
 		if (ft_strlen(str[i]) == count)
 		{
-			write(1, "Error\n", 6);
+			printf("%s\n", "Error is empty");
 			exit(1);
 		}
 		i++;
@@ -74,7 +74,7 @@ void	max_min(char **split)
 		num1 = ft_atoi(split[n]);
 		if (num1 < 0 || num1 > 2147483648)
 		{
-			write(1, "Error\n", 6);
+			printf("%s\n", "Error is not num");
 			exit(1);
 		}
 		n++;
@@ -117,7 +117,7 @@ void	is_numbre(char **split)
 			j++;
 		else
 		{
-			write(1, "Error\n", 6);
+			printf("%s\n", "Error is not num");
 			exit(1);
 		}
 	}
