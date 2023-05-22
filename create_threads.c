@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:13:34 by selhilal          #+#    #+#             */
-/*   Updated: 2023/05/21 18:58:58 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/05/22 17:36:16 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,29 @@
 
 void	*func(void *ana)
 {
-	(void)ana;
-	printf("hi im thread");
+	t_philo *ptr = (t_philo *)ana;
+	//int i = 0;
+	//while(1)
+	//{
+		//pthread_mutex_lock(&ptr->fork);
+		printf(" hi im thread  %d\n", ptr->p_id);
+		//pthread_mutex_unlock(&ptr->fork);
+	//}
 	return (NULL);
 }
 
 void	ft_start(t_philo *thread)
 {
-	int	i;
-	int	j;
+	t_philo	*lst;
 
-	i = thread->list->number_philo;
-	j = 0;
-	while (j < i)
+	lst = thread;
+	while (thread)
 	{
-
-		pthread_create(&thread->threads, NULL, func, NULL);
-		i++;
+		pthread_create(&lst->threads, NULL, &func, lst);
+		pthread_detach(thread->threads);
+		thread = thread->next;
+		if (thread == lst)
+			break ;
+		lst = lst->next;
 	}
 }
-

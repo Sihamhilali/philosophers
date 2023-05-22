@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:30:39 by selhilal          #+#    #+#             */
-/*   Updated: 2023/05/21 16:24:41 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/05/22 15:51:18 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@
 # include<stdlib.h>
 # include<pthread.h>
 
+
+int		ft_strlen(const char *s);
+long	ft_atoi(char const *str);
+void	empty(char **str);
+void	max_min(char **split);
+void	is_numbre(char **split);
 
 typedef struct s_list
 {
@@ -39,16 +45,10 @@ typedef struct s_philo
 
 }				t_philo;
 
-int		ft_strlen(const char *s);
-long	ft_atoi(char const *str);
-void	empty(char **str);
-void	max_min(char **split);
-void	is_numbre(char **split);
+
 void	isital(t_list *thread);
-
-
 void	creat_philosoper(t_list *thread);
-t_list	*ft_lstnew(int philo, int die, int eat, int sleep);
 void	ft_lstadd_back(t_philo	**lst, t_list	*new);
-
+void	give_id(t_list *data, t_philo **philos);
+void	ft_start(t_philo *thread);
 #endif

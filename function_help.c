@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:07:19 by selhilal          #+#    #+#             */
-/*   Updated: 2023/05/21 14:18:31 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/05/22 11:19:25 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	is_numbre(char **split)
 {
 	int		j;
 
-	j = 0;
+	j = 1;
 	while (split[j])
 	{
 		if (ft_isdigit(split[j]) == 1)
