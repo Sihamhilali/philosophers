@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:30:39 by selhilal          #+#    #+#             */
-/*   Updated: 2023/05/22 15:51:18 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/05/24 19:52:08 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include<stdio.h>
 # include<stdlib.h>
 # include<pthread.h>
+# include <time.h>
+# include <sys/time.h>
 
 
 int		ft_strlen(const char *s);
@@ -32,21 +34,20 @@ typedef struct s_list
 	int				time_eat;
 	int				time_sleep;
 	int				time_die;
+	int				start_eat;
+	int				finish_eat;
+	int				start_think;
 }				t_list;
 
 typedef struct s_philo
 {
 	int				p_id;
-	pthread_mutex_t	fork;
+	pthread_mutex_t	*fork;
 	pthread_t		threads;
 	t_list			*list;
 	struct s_philo	*next;
-	struct s_philo	*prev;
-
 }				t_philo;
 
-
-void	isital(t_list *thread);
 void	creat_philosoper(t_list *thread);
 void	ft_lstadd_back(t_philo	**lst, t_list	*new);
 void	give_id(t_list *data, t_philo **philos);
