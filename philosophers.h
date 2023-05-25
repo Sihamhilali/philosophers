@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:30:39 by selhilal          #+#    #+#             */
-/*   Updated: 2023/05/24 19:52:08 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/05/24 20:44:02 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,14 @@ typedef struct s_list
 	int				time_die;
 	int				start_eat;
 	int				finish_eat;
+	pthread_mutex_t	write;
 	int				start_think;
 }				t_list;
 
 typedef struct s_philo
 {
 	int				p_id;
-	pthread_mutex_t	*fork;
+	pthread_mutex_t	fork;
 	pthread_t		threads;
 	t_list			*list;
 	struct s_philo	*next;

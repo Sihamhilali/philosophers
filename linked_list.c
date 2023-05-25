@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 22:46:14 by selhilal          #+#    #+#             */
-/*   Updated: 2023/05/24 15:31:57 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/05/24 20:34:12 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	give_id(t_list *data, t_philo **philos)
 	i = 1;
 	while (i <= data->number_philo)
 	{
-		puts("heey\n");
 		ft_add_philo(philos, data, i);
 		i++;
 	}
