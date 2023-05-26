@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:03:34 by selhilal          #+#    #+#             */
-/*   Updated: 2023/05/24 20:15:38 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/05/26 20:35:13 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	ft_strlen(const char *s)
 	return (i);
 }
 
+
 int	main(int argc, char **argv)
 {
 	t_list	data;
@@ -34,12 +35,11 @@ int	main(int argc, char **argv)
 		printf("Error size of argument");
 	else
 	{
-		empty(argv);
-		max_min(argv);
-		is_numbre(argv);
-		data.start_eat = 0;
-		data.finish_eat = 0;
-		data.start_think = 0;
+		if (!empty(argv) || !is_numbre(argv))
+		{
+			printf("%s\n", "Error in the numbers");
+			return (0);
+		}
 		data.number_philo = ft_atoi(argv[1]);
 		data.time_die = ft_atoi(argv[2]);
 		data.time_eat = ft_atoi(argv[3]);
@@ -48,8 +48,16 @@ int	main(int argc, char **argv)
 			data.max_eat = ft_atoi(argv[5]);
 		else
 			data.max_eat = 0;
+		if (data.number_philo <= 0 || data.time_die < 0
+			||data.time_eat < 0 || data.time_sleep < 0)
+		{
+			printf("%s\n", "Error in the numbers");
+			return (0);
+		}
+		data.start_time = get_time();
 		give_id(&data, &philos);
 		ft_start(philos);
+		pthread_mutex_destroy(&philos->fork);
 	}
 
 }

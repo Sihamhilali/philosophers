@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 22:46:14 by selhilal          #+#    #+#             */
-/*   Updated: 2023/05/24 20:34:12 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/05/26 18:05:42 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	ft_add_philo(t_philo **lst, t_list *data, int p_id)
 	ft_lstlast(*lst)->next = new_node;
 	new_node->next = *lst;
 }
-
 
 void	give_id(t_list *data, t_philo **philos)
 {

@@ -6,13 +6,13 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:07:19 by selhilal          #+#    #+#             */
-/*   Updated: 2023/05/24 18:05:44 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/05/26 18:35:46 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"philosophers.h"
 
-void	empty(char **str)
+int	empty(char **str)
 {
 	int	i;
 	int	j;
@@ -30,12 +30,10 @@ void	empty(char **str)
 			j++;
 		}
 		if (ft_strlen(str[i]) == count)
-		{
-			printf("%s\n", "Error is empty");
-			exit(1);
-		}
+			return (0);
 		i++;
 	}
+	return (1);
 }
 
 long	ft_atoi(char const *str)
@@ -63,24 +61,6 @@ long	ft_atoi(char const *str)
 	return (somme * signe);
 }
 
-void	max_min(char **split)
-{
-	long	num1;
-	int		n;
-
-	n = 0;
-	while (split[n])
-	{
-		num1 = ft_atoi(split[n]);
-		if (num1 < 0 || num1 > 2147483648)
-		{
-			printf("%s\n", "Error is not num");
-			exit(1);
-		}
-		n++;
-	}
-}
-
 int	ft_isdigit(char *str)
 {
 	int	i;
@@ -106,7 +86,7 @@ int	ft_isdigit(char *str)
 	return (0);
 }
 
-void	is_numbre(char **split)
+int	is_numbre(char **split)
 {
 	int		j;
 
@@ -116,9 +96,7 @@ void	is_numbre(char **split)
 		if (ft_isdigit(split[j]) == 1)
 			j++;
 		else
-		{
-			printf("%s\n", "Error is not num");
-			exit(1);
-		}
+			return (0);
 	}
+	return (1);
 }

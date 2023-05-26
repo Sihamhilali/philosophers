@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:30:39 by selhilal          #+#    #+#             */
-/*   Updated: 2023/05/24 20:44:02 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/05/26 18:35:54 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@
 
 int		ft_strlen(const char *s);
 long	ft_atoi(char const *str);
-void	empty(char **str);
-void	max_min(char **split);
-void	is_numbre(char **split);
+int		empty(char **str);
+int		is_numbre(char **split);
 
 typedef struct s_list
 {
@@ -34,10 +33,8 @@ typedef struct s_list
 	int				time_eat;
 	int				time_sleep;
 	int				time_die;
-	int				start_eat;
-	int				finish_eat;
+	long			start_time;
 	pthread_mutex_t	write;
-	int				start_think;
 }				t_list;
 
 typedef struct s_philo
@@ -49,8 +46,11 @@ typedef struct s_philo
 	struct s_philo	*next;
 }				t_philo;
 
-void	creat_philosoper(t_list *thread);
-void	ft_lstadd_back(t_philo	**lst, t_list	*new);
+long	get_time(void);
+long	cureent_time(t_philo *philo);
+//int		ft_usleep(unsigned int time);
+//void	creat_philosoper(t_list *thread);
+//void	ft_lstadd_back(t_philo	**lst, t_list	*new);
 void	give_id(t_list *data, t_philo **philos);
 void	ft_start(t_philo *thread);
 #endif
