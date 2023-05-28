@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 20:52:41 by selhilal          #+#    #+#             */
-/*   Updated: 2023/05/26 18:05:16 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/05/28 17:38:30 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,12 @@ long	cureent_time(t_philo *philo)
 	return (get_time() - philo->list->start_time);
 }
 
-int	ft_usleep(unsigned int time, t_philo	*philo)
+int	ft_usleep(unsigned int time)
 {
-	while ((get_time() - philo->list->start_time) < time)
-		usleep(time / 10);
+	long	now;
+
+	now = get_time();
+	while (get_time() < time + now)
+		usleep(500);
 	return (0);
 }

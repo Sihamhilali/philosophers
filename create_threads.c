@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:13:34 by selhilal          #+#    #+#             */
-/*   Updated: 2023/05/26 18:08:06 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/05/28 17:40:32 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,18 @@ void	fork_left(t_philo *ptr)
 	pthread_mutex_unlock(&ptr->list->write);
 }
 
+void	is_eating(t_philo *ptr)
+{
+	ptr->eat++;
+	pthread_mutex_lock(&ptr->list->write);
+	printf("%ld %d is eating\n", cureent_time(ptr), ptr->p_id);
+	pthread_mutex_unlock(&ptr->list->write);
+	ptr->last_eat = get_time();
+	ft_usleep(ptr->list->time_eat);
+}
+
 void	forks_down(t_philo *ptr)
 {
-	usleep(ptr->list->time_eat * 1000);
 	pthread_mutex_unlock(&ptr->fork);
 	pthread_mutex_lock(&ptr->list->write);
 	printf("%ld %d down fork 1\n", cureent_time(ptr), ptr->p_id);
@@ -46,15 +55,14 @@ void	*func(void *ana)
 	t_philo	*ptr;
 
 	ptr = (t_philo *)ana;
-
 	while (1)
 	{
 
 		fork_right(ptr);
 		fork_left(ptr);
+		is_eating(ptr);
 		forks_down(ptr);
-		//ft_usleep(ptr->list->time_sleep * 1000);
-		usleep(ptr->list->time_sleep * 1000);
+		ft_usleep(ptr->list->time_sleep);
 	}
 	return (NULL);
 }
@@ -74,6 +82,5 @@ void	ft_start(t_philo *thread)
 		usleep(500);
 		i++;
 	}
-	while (1);
-
+	die(lst);
 }

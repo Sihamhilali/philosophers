@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:03:34 by selhilal          #+#    #+#             */
-/*   Updated: 2023/05/26 20:35:13 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/05/28 17:51:27 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,29 @@ int	ft_strlen(const char *s)
 	return (i);
 }
 
+void	ft_free(t_philo *philo, t_list *list)
+{
+	free(philo);
+	free(list);
+}
+
+void	init(t_list *data, char **argv, int argc)
+{
+	data->number_philo = ft_atoi(argv[1]);
+	data->time_die = ft_atoi(argv[2]);
+	data->time_eat = ft_atoi(argv[3]);
+	data->time_sleep = ft_atoi(argv[4]);
+	if (argc == 6)
+		data->max_eat = ft_atoi(argv[5]);
+	else
+			data->max_eat = -1;
+		data->start_time = get_time();
+}
 
 int	main(int argc, char **argv)
 {
-	t_list	data;
 	t_philo	*philos;
+	t_list	data;
 	int		i;
 
 	i = 1;
@@ -35,29 +53,17 @@ int	main(int argc, char **argv)
 		printf("Error size of argument");
 	else
 	{
-		if (!empty(argv) || !is_numbre(argv))
-		{
-			printf("%s\n", "Error in the numbers");
-			return (0);
-		}
-		data.number_philo = ft_atoi(argv[1]);
-		data.time_die = ft_atoi(argv[2]);
-		data.time_eat = ft_atoi(argv[3]);
-		data.time_sleep = ft_atoi(argv[4]);
-		if (argc == 6)
-			data.max_eat = ft_atoi(argv[5]);
-		else
-			data.max_eat = 0;
+		init(&data, argv, argc);
 		if (data.number_philo <= 0 || data.time_die < 0
-			||data.time_eat < 0 || data.time_sleep < 0)
+			||data.time_eat < 0 || data.time_sleep < 0
+			|| !empty(argv) || !is_numbre(argv))
 		{
 			printf("%s\n", "Error in the numbers");
 			return (0);
 		}
-		data.start_time = get_time();
 		give_id(&data, &philos);
 		ft_start(philos);
-		pthread_mutex_destroy(&philos->fork);
+		ft_free(philos, &data);
 	}
 
 }

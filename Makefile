@@ -6,7 +6,7 @@
 #    By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/19 15:32:42 by selhilal          #+#    #+#              #
-#    Updated: 2023/05/25 16:08:36 by selhilal         ###   ########.fr        #
+#    Updated: 2023/05/28 15:12:11 by selhilal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = function_help.c main.c create_threads.c linked_list.c timer.c 
+SRC = function_help.c main.c create_threads.c linked_list.c timer.c die.c
 
 OBJ = $(SRC:.c=.o)
 

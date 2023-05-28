@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 22:46:14 by selhilal          #+#    #+#             */
-/*   Updated: 2023/05/26 18:05:42 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/05/28 17:18:45 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	ft_add_philo(t_philo **lst, t_list *data, int p_id)
 		return ;
 	new_node->p_id = p_id;
 	new_node->list = data;
+	new_node->last_eat = get_time();
+	new_node->eat = 0;
 	pthread_mutex_init(&new_node->fork, NULL);
 	if (*lst == NULL)
 	{
