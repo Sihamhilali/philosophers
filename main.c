@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:03:34 by selhilal          #+#    #+#             */
-/*   Updated: 2023/05/28 17:51:27 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/05/29 21:29:13 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,14 @@ int	ft_strlen(const char *s)
 
 void	ft_free(t_philo *philo, t_list *list)
 {
-	free(philo);
-	free(list);
+	while (philo)
+	{
+		pthread_mutex_destroy(&philo->fork);
+		philo = philo->next;
+	}
+	pthread_mutex_destroy(&list->last);
+	pthread_mutex_destroy(&list->eat_first);
+	pthread_mutex_destroy(&list->write);
 }
 
 void	init(t_list *data, char **argv, int argc)
@@ -38,7 +44,7 @@ void	init(t_list *data, char **argv, int argc)
 		data->max_eat = ft_atoi(argv[5]);
 	else
 			data->max_eat = -1;
-		data->start_time = get_time();
+	data->start_time = get_time();
 }
 
 int	main(int argc, char **argv)
@@ -65,5 +71,4 @@ int	main(int argc, char **argv)
 		ft_start(philos);
 		ft_free(philos, &data);
 	}
-
 }

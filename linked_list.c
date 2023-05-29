@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 22:46:14 by selhilal          #+#    #+#             */
-/*   Updated: 2023/05/28 17:18:45 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/05/29 21:15:07 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	ft_add_philo(t_philo **lst, t_list *data, int p_id)
 	new_node->p_id = p_id;
 	new_node->list = data;
 	new_node->last_eat = get_time();
-	new_node->eat = 0;
+	new_node->eat = -1;
+	new_node->list->eats = 0;
 	pthread_mutex_init(&new_node->fork, NULL);
 	if (*lst == NULL)
 	{
@@ -58,4 +59,25 @@ void	give_id(t_list *data, t_philo **philos)
 		ft_add_philo(philos, data, i);
 		i++;
 	}
+}
+
+void	ft_start(t_philo *thread)
+{
+	t_philo	*lst;
+	int		i;
+
+	lst = thread;
+	i = 0 ;
+	pthread_mutex_init(&thread->list->write, NULL);
+	pthread_mutex_init(&thread->list->eat_first, NULL);
+	pthread_mutex_init(&thread->list->last, NULL);
+	while (i < thread->list->number_philo)
+	{
+		pthread_create(&lst->threads, NULL, &func, thread);
+		pthread_detach(lst->threads);
+		thread = thread->next;
+		usleep(500);
+		i++;
+	}
+	die(lst);
 }
