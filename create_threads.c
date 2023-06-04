@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:13:34 by selhilal          #+#    #+#             */
-/*   Updated: 2023/05/29 21:32:20 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/06/04 17:42:36 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	fork_right(t_philo *ptr)
 {
 	pthread_mutex_lock(&ptr->fork);
-	ft_printf(ptr, "%ld %d Take fork 1\n");
+	ft_printf(ptr, "%ld %d has taken a fork\n");
 }
 
 void	fork_left(t_philo *ptr)
 {
 	pthread_mutex_lock(&ptr->next->fork);
-	ft_printf(ptr, "%ld %d Take fork 2\n");
+	ft_printf(ptr, "%ld %d has taken a fork\n");
 }
 
 void	is_eating(t_philo *ptr)
@@ -39,9 +39,7 @@ void	is_eating(t_philo *ptr)
 void	forks_down(t_philo *ptr)
 {
 	pthread_mutex_unlock(&ptr->fork);
-	ft_printf(ptr, "%ld %d down fork 1\n");
 	pthread_mutex_unlock(&ptr->next->fork);
-	ft_printf(ptr, "%ld %d down fork 2\n");
 }
 
 void	*func(void *ana)
@@ -55,8 +53,8 @@ void	*func(void *ana)
 		fork_left(ptr);
 		is_eating(ptr);
 		forks_down(ptr);
-		ft_usleep(ptr->list->time_sleep);
 		ft_printf(ptr, "%ld %d is sleeping\n");
+		ft_usleep(ptr->list->time_sleep);
 		ft_printf(ptr, "%ld %d is thinking\n");
 	}
 	return (NULL);

@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 14:22:42 by selhilal          #+#    #+#             */
-/*   Updated: 2023/06/04 13:20:22 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/06/04 16:10:26 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_usleep(unsigned int time)
 
 	now = get_time();
 	while (get_time() < time + now)
-		usleep(500);
+		usleep(200);
 	return (0);
 }
 

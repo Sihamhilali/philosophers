@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 22:46:14 by selhilal          #+#    #+#             */
-/*   Updated: 2023/06/04 12:59:31 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/06/04 17:39:48 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	ft_start(t_philo *thread)
 		pthread_create(&lst->threads, NULL, &func, thread);
 		pthread_detach(lst->threads);
 		thread = thread->next;
-		usleep(500);
+		usleep(200);
 		i++;
 	}
 	if (die(lst) == 1)

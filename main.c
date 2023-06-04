@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:03:34 by selhilal          #+#    #+#             */
-/*   Updated: 2023/06/04 13:16:00 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/06/04 18:01:19 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	ft_free(t_philo *philo, t_list *list)
 	pthread_mutex_destroy(&list->last);
 	pthread_mutex_destroy(&list->eat_first);
 	pthread_mutex_destroy(&list->write);
+	free(&list);
 }
 
 void	init(t_list *data, char **argv, int argc)
@@ -48,11 +49,17 @@ void	init(t_list *data, char **argv, int argc)
 	data->start_time = get_time();
 }
 
+void	test(void)
+{
+	system("leaks philo");
+}
+
 int	main(int argc, char **argv)
 {
 	t_philo	*philos;
 	t_list	*data;
 
+	atexit(test);
 	data = malloc(sizeof(t_list));
 	philos = NULL;
 	if (argc != 5 && argc != 6)
@@ -65,6 +72,7 @@ int	main(int argc, char **argv)
 			|| !empty(argv) || !is_numbre(argv))
 		{
 			printf("%s\n", "Error in the numbers");
+			free(data);
 			return (0);
 		}
 		give_id(data, &philos);
