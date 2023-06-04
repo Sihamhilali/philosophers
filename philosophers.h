@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:30:39 by selhilal          #+#    #+#             */
-/*   Updated: 2023/05/29 21:33:57 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/06/04 12:54:43 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct s_list
 	pthread_mutex_t	last;
 	pthread_mutex_t	eat_first;
 	pthread_mutex_t	write;
+	pthread_mutex_t	die;
+	int				dead;
 }				t_list;
 
 typedef struct s_philo
@@ -54,7 +56,7 @@ long	get_time(void);
 long	cureent_time(t_philo *philo);
 int		ft_usleep(unsigned int time);
 void	give_id(t_list *data, t_philo **philos);
-void	ft_start(t_philo *thread);
+int		ft_start(t_philo *thread);
 void	*func(void *ana);
 int		die(t_philo *philos);
 void	ft_printf(t_philo *ptr, char *str);

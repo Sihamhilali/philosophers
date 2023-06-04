@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:07:19 by selhilal          #+#    #+#             */
-/*   Updated: 2023/05/29 16:09:29 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/06/04 12:50:13 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,9 @@ int	is_numbre(char **split)
 void	ft_printf(t_philo *ptr, char *str)
 {
 	pthread_mutex_lock(&ptr->list->write);
-	printf(str, cureent_time(ptr), ptr->p_id);
+	pthread_mutex_lock(&ptr->list->die);
+	if (ptr->list->dead != 1)
+		printf(str, cureent_time(ptr), ptr->p_id);
+	pthread_mutex_unlock(&ptr->list->die);
 	pthread_mutex_unlock(&ptr->list->write);
 }

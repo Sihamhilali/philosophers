@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:03:34 by selhilal          #+#    #+#             */
-/*   Updated: 2023/05/29 21:29:13 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/06/04 13:16:00 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	ft_free(t_philo *philo, t_list *list)
 
 void	init(t_list *data, char **argv, int argc)
 {
+	data->dead = 0;
 	data->number_philo = ft_atoi(argv[1]);
 	data->time_die = ft_atoi(argv[2]);
 	data->time_eat = ft_atoi(argv[3]);
@@ -50,25 +51,26 @@ void	init(t_list *data, char **argv, int argc)
 int	main(int argc, char **argv)
 {
 	t_philo	*philos;
-	t_list	data;
-	int		i;
+	t_list	*data;
 
-	i = 1;
+	data = malloc(sizeof(t_list));
 	philos = NULL;
 	if (argc != 5 && argc != 6)
 		printf("Error size of argument");
 	else
 	{
-		init(&data, argv, argc);
-		if (data.number_philo <= 0 || data.time_die < 0
-			||data.time_eat < 0 || data.time_sleep < 0
+		init(data, argv, argc);
+		if (data->number_philo <= 0 || data->time_die < 0
+			||data->time_eat < 0 || data->time_sleep < 0
 			|| !empty(argv) || !is_numbre(argv))
 		{
 			printf("%s\n", "Error in the numbers");
 			return (0);
 		}
-		give_id(&data, &philos);
-		ft_start(philos);
-		ft_free(philos, &data);
+		give_id(data, &philos);
+		if (ft_start(philos) == 1)
+			return (1);
+		ft_free(philos, data);
 	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 22:46:14 by selhilal          #+#    #+#             */
-/*   Updated: 2023/05/29 21:15:07 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/06/04 12:59:31 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,17 @@ void	give_id(t_list *data, t_philo **philos)
 	}
 }
 
-void	ft_start(t_philo *thread)
+int	ft_start(t_philo *thread)
 {
 	t_philo	*lst;
 	int		i;
 
 	lst = thread;
 	i = 0 ;
-	pthread_mutex_init(&thread->list->write, NULL);
+	pthread_mutex_init(&(thread->list->write), NULL);
 	pthread_mutex_init(&thread->list->eat_first, NULL);
 	pthread_mutex_init(&thread->list->last, NULL);
+	pthread_mutex_init(&thread->list->die, NULL);
 	while (i < thread->list->number_philo)
 	{
 		pthread_create(&lst->threads, NULL, &func, thread);
@@ -79,5 +80,7 @@ void	ft_start(t_philo *thread)
 		usleep(500);
 		i++;
 	}
-	die(lst);
+	if (die(lst) == 1)
+		return (1);
+	return (0);
 }

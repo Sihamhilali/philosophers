@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 14:22:42 by selhilal          #+#    #+#             */
-/*   Updated: 2023/05/29 21:14:21 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/06/04 13:20:22 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,26 +40,26 @@ int	die(t_philo *philos)
 	t_philo	*tmp;
 
 	tmp = philos;
-	while (tmp)
+	while (tmp->next != NULL)
 	{
 		if (tmp->list->max_eat > -1)
 		{
 			pthread_mutex_lock(&tmp->list->eat_first);
-			if (tmp->eat >= tmp->list->max_eat)
-				tmp->list->eats++;
+			if (tmp->eat == tmp->list->max_eat)
+			tmp->list->eats++;
 			if (tmp->list->eats >= tmp->list->number_philo)
-				return (0);
+				return (pthread_mutex_lock(&tmp->list->die),
+					tmp->list->dead = 1,
+					pthread_mutex_unlock(&tmp->list->die), 1);
 			pthread_mutex_unlock(&tmp->list->eat_first);
 		}
 		pthread_mutex_lock(&tmp->list->last);
 		if (get_time() - tmp->last_eat > tmp->list->time_die)
-		{
-			pthread_mutex_unlock(&tmp->list->last);
-			printf("%ld %d is die\n", cureent_time(tmp), tmp->p_id);
-			return (0);
-		}
+			return (pthread_mutex_lock(&tmp->list->die), tmp->list->dead = 1,
+				pthread_mutex_unlock(&tmp->list->die),
+				pthread_mutex_unlock(&tmp->list->last),
+				printf("%ld %d is die\n", cureent_time(tmp), tmp->p_id), 1);
 		pthread_mutex_unlock(&tmp->list->last);
-		tmp = tmp->next;
 	}
 	return (0);
 }
