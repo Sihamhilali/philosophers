@@ -6,11 +6,11 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 22:46:14 by selhilal          #+#    #+#             */
-/*   Updated: 2023/06/04 17:39:48 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/06/06 16:30:50 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"philosophers.h"
+#include"../include/philosophers.h"
 
 t_philo	*ft_lstlast(t_philo	*lst)
 {
@@ -27,9 +27,7 @@ t_philo	*ft_lstlast(t_philo	*lst)
 void	ft_add_philo(t_philo **lst, t_list *data, int p_id)
 {
 	t_philo	*new_node;
-	t_philo	*temp;
 
-	temp = *lst;
 	new_node = (t_philo *)malloc(sizeof(t_philo));
 	if (!new_node)
 		return ;

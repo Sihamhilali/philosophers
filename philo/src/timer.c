@@ -6,11 +6,11 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 14:22:42 by selhilal          #+#    #+#             */
-/*   Updated: 2023/06/04 16:10:26 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/06/06 16:30:55 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"philosophers.h"
+#include"../include/philosophers.h"
 
 long	get_time(void)
 {
@@ -58,7 +58,7 @@ int	die(t_philo *philos)
 			return (pthread_mutex_lock(&tmp->list->die), tmp->list->dead = 1,
 				pthread_mutex_unlock(&tmp->list->die),
 				pthread_mutex_unlock(&tmp->list->last),
-				printf("%ld %d is die\n", cureent_time(tmp), tmp->p_id), 1);
+				printf("%ld %d died\n", cureent_time(tmp), tmp->p_id), 1);
 		pthread_mutex_unlock(&tmp->list->last);
 	}
 	return (0);

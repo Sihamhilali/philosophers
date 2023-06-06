@@ -6,11 +6,11 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:07:19 by selhilal          #+#    #+#             */
-/*   Updated: 2023/06/04 12:50:13 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/06/06 16:30:47 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"philosophers.h"
+#include"../include/philosophers.h"
 
 int	empty(char **str)
 {

@@ -6,11 +6,11 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 14:03:34 by selhilal          #+#    #+#             */
-/*   Updated: 2023/06/04 18:01:19 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/06/06 16:30:53 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"philosophers.h"
+#include"../include/philosophers.h"
 
 int	ft_strlen(const char *s)
 {
@@ -49,32 +49,24 @@ void	init(t_list *data, char **argv, int argc)
 	data->start_time = get_time();
 }
 
-void	test(void)
-{
-	system("leaks philo");
-}
-
 int	main(int argc, char **argv)
 {
 	t_philo	*philos;
 	t_list	*data;
 
-	atexit(test);
-	data = malloc(sizeof(t_list));
 	philos = NULL;
 	if (argc != 5 && argc != 6)
 		printf("Error size of argument");
 	else
 	{
+		data = malloc(sizeof(t_list));
+		if (!data)
+			return (0);
 		init(data, argv, argc);
 		if (data->number_philo <= 0 || data->time_die < 0
 			||data->time_eat < 0 || data->time_sleep < 0
 			|| !empty(argv) || !is_numbre(argv))
-		{
-			printf("%s\n", "Error in the numbers");
-			free(data);
-			return (0);
-		}
+			return (printf("%s\n", "Error in the numbers"), free(data), 0);
 		give_id(data, &philos);
 		if (ft_start(philos) == 1)
 			return (1);

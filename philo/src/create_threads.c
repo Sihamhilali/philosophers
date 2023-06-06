@@ -6,11 +6,11 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 15:13:34 by selhilal          #+#    #+#             */
-/*   Updated: 2023/06/04 17:42:36 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/06/06 16:30:40 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"philosophers.h"
+#include"../include/philosophers.h"
 
 void	fork_right(t_philo *ptr)
 {
